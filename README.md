@@ -179,25 +179,46 @@ For another example, ADD command (0010 XXXX - 16 + X in dec), after step 0 and 1
 Below, my complete list of instructions implemented (feel free to add/modify your own!):
 
 0 NOP   - 0000 XXXX - does nothing.
+
 1 LDA X - 0001 XXXX - loads value from RAM address X to register A.
+
 2 ADD X - 0010 XXXX - loads value from RAM address X to register B, then outputs addition and places it in A register.
+
 3 ADD X - 0011 XXXX - loads value from RAM address X to register B, then outputs subtraction and places it in A register.
+
 4 STA X - 0100 XXXX - loads value from A register and stores it in RAM in X address.
+
 5 LDI X - 0101 XXXX - fast loads value from instruction register (only 4 bit value) to A register.
+
 6 JMP X - 0110 XXXX - unconditional (will always happen) jump to X value (sets PC to value X).
+
 7 JC  X - 0111 XXXX - jump carry (when carry out [T]) is true, jumps to X value (sets PC to value X).
+
 8 JO  X - 1000 XXXX - jump zero (when carry out [O]) is true, jumps to X value (sets PC to value X).
+
 9 OUR X - 1001 XXXX - outputs to screen value from RAM address X.
+
 .
+
 .
+
+
 .
+
 14 OUT  - 1110 XXXX - outputs to screen from A register (X does nothing).
+
 15 HLT  - 1111 XXXX - stops clock (X does nothing).
 
+
+
 Let’s write a simple program and see how it runs!
+
 0 LDA 3 - we load value to A register from memory location 3
+
 1 OUT - we display on screen from A register.
+
 2 HLT - stops the CLK, which halts whole machine.
+
 3 42 - stored value
 
 So basically this program will output value saved in RAM address 3 (0011 bin).
@@ -205,16 +226,26 @@ So basically this program will output value saved in RAM address 3 (0011 bin).
 So let translate it to binary:
 
 0 Address: 0000
+
 Value: 0001 0011
 
+
 1 Address: 0001
+
 Value: 1110 0000
 
+
+
 2 Address: 0010
+
 Value: 1111 0000
 
+
+
 3 Address: 0011
+
 Value: 0010 1010
+
 
 So now, to write program we need to go write to our memory (W on memory panel - see RAM picture part for explanation), start from address 0000 and inputs inside value 0001 0011 (0001 means LDA instruction, 0011 being X - address 3 in our memory).
 
